@@ -1,0 +1,94 @@
+# Forward Kinetic Microbial Model
+
+Following Allison, Wallenstein, and Bradford 2013, Nature Geoscience; code from Steve Allison.
+
+## Parameters
+
+* Ea = activation energy for decomposition reaction
+* Ea_uptake = activation energy for DOC uptake
+* Ea_K = Ea term for Km parameter (below)
+* Ea_Kuptake = Ea term for Kup parameter (below)
+* R = gas constant
+* ECref = proportion of C assimilated into microbial biomass (vs. lost to respiration; i.e. CUE)
+* m = slope of CUE (acclimating with temperature)
+* Vmax_ref = maximum reaction velocity for decomposition
+* Vmax_uptake_ref = maximum reaction velocity for DOC uptake
+* Km_ref = reference half-saturation constant for decomposition reaction
+* Km_uptake_ref = reference half-saturation constant for DOC uptake
+* rL = rate of enzyme loss
+* rE = rate of enzyme production
+* rB = rate of microbial biomass death
+* aBS = fraction of dead microbial biomass allocated to SOC pool
+* Temp = conversion factor for temp in Kelvin
+* TempK = temp in Kelvin
+* Tref = reference temperature (in K)
+* IS = input to SOC
+* ID = input to DOC pool
+
+###Fluxes###
+#FA = uptake (flux from DOC pool to microbial biomass)
+#FB = biomass loss (death)
+#FE = enzyme production 
+#FL = enzyme loss 
+#FS = decomposition (flux from SOC pool to DOC pool)
+
+###Pools###
+#S = SOC
+#D = DOC
+#B = microbial biomass
+#E = enzyme pool
+#CO2 = CO2
+
+
+rL <- 0.001
+IS <- 0.00015
+ID <- 0.00001
+rB <- 0.00028
+ECref <- 0.31
+m <- -0.016
+Temp <- -5:35
+TempK <- Temp+273
+Tref <- 293
+aBS <- 0.5
+rE <- 5.6e-6
+Vmax_ref <- 1
+Vmax_uptake_ref <- 0.01
+Km_ref <- 250
+Km_uptake_ref <- 0.26
+Ea <- 47
+Ea_uptake <- 47
+Ea_K <- 30
+Ea_Kuptake <- 30
+R <- 0.008314
+
+```r
+EC <- (ECref+m*(Temp-20))
+V <- Vmax_ref*exp((-Ea/R)*(1/TempK-1/Tref))
+V_up <- Vmax_uptake_ref*exp((-Ea/R)*(1/TempK-1/Tref))
+K <- Km_ref*exp((-Ea_K/R)*(1/TempK-1/Tref))
+K_up <- Km_uptake_ref*exp((-Ea_Kuptake/R)*(1/TempK-1/Tref))
+```
+# Numerical simulation of AWB
+
+```r
+tr <- which(Temp==20)
+S <- 37.82656; D <- 0.02638431; B <- 0.2516949; E <- 0.001409491
+time <- 2000000
+out <- matrix(rep(0,time*6),nrow=time,dimnames=list(NULL,c("Hours","SOC","DOC","MBC","ENZC","CO2")))
+for (i in 1:time) {
+  FA <- V_up[tr]*B*D/(K_up[tr]+D)
+  FB <- rB*B
+  FE <- rE*B
+  FL <- rL*E
+  FS <- V[tr]*E*S/(K[tr]+S)
+  S <- S + IS + FB*aBS - FS
+  D <- D + ID + FB*(1-aBS) + FS + FL - FA
+  B <- B + FA*EC[tr] - FB -FE
+  E <- E + FE - FL
+  CO2 <- FA*(1-EC[tr])
+  out[i,] <- c(i,S,D,B,E,CO2)
+}
+out <- data.frame(out)
+days <- seq(0,480000,by=24)
+plot(out[days,"CO2"]~out[days,"Hours"])
+```
