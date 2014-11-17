@@ -21,7 +21,7 @@ Incubation study
 |site_id   | char  | | lookup |
 |jar_id | | int| (optional replicate id) |
 |respiration| g/g/d | float | grams of C as CO2 respired per gram soil per day |
-
+|temperature|C | float | Celsius |
 
 #### Site table
 
