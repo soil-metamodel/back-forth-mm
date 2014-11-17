@@ -17,8 +17,6 @@ microbial physiology. <i>Nature Geoscience</i>. DOI: 10.1038/NGEO846.
 * ID = input to DOC pool [set to 0 for incubation experiments]
 * CO2 = CO2
 
-
-
 ## Parameters
 
 * Ea = activation energy for decomposition reaction (real<lower=0>)
@@ -58,11 +56,18 @@ These are specified as data for the first time step and estimated thereafter.
 * B = microbial biomass
 * E = enzyme pool
 
+## ODE
+
+d.S/d.t =
+d.D/d.t = 
+d.B/d.t = 
+d.E/d.t = 
+
 ## Steve Allison's R code for simulation
 
 ```
-# simulated parameter values
-rL <- 0.001
+# simulated parameter values / ranges
+rL <- 0.001  
 IS <- 0.00015
 ID <- 0.00001
 rB <- 0.00028
