@@ -61,6 +61,7 @@ These are specified as data for the first time step and estimated thereafter.
 ## Steve Allison's R code for simulation
 
 ```
+# simulated parameter values
 rL <- 0.001
 IS <- 0.00015
 ID <- 0.00001
@@ -82,6 +83,7 @@ Ea_K <- 30
 Ea_Kuptake <- 30
 R <- 0.008314
 
+# these depend on temp and won't change over simulation
 EC <- (ECref+m*(Temp-20))
 V <- Vmax_ref*exp((-Ea/R)*(1/TempK-1/Tref))
 V_up <- Vmax_uptake_ref*exp((-Ea/R)*(1/TempK-1/Tref))
