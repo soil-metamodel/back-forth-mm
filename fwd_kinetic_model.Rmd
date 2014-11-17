@@ -3,28 +3,43 @@
 Following Allison, Wallenstein, and Bradford (2010) Soil-carbon response to warming dependent on
 microbial physiology. <i>Nature Geoscience</i>. DOI: 10.1038/NGEO846.
 
-## Parameters
 
-* Ea = activation energy for decomposition reaction
-* Ea_uptake = activation energy for DOC uptake
-* Ea_K = Ea term for Km parameter (below)
-* Ea_Kuptake = Ea term for Kup parameter (below)
-* R = gas constant
-* ECref = proportion of C assimilated into microbial biomass (vs. lost to respiration; i.e. CUE)
-* m = slope of CUE (acclimating with temperature)
-* Vmax_ref = maximum reaction velocity for decomposition
-* Vmax_uptake_ref = maximum reaction velocity for DOC uptake
-* Km_ref = reference half-saturation constant for decomposition reaction
-* Km_uptake_ref = reference half-saturation constant for DOC uptake
-* rL = rate of enzyme loss
-* rE = rate of enzyme production
-* rB = rate of microbial biomass death
-* aBS = fraction of dead microbial biomass allocated to SOC pool
+## Constants
+
+* R = gas constant 
 * Temp = conversion factor for temp in Kelvin
+
+## Data
+
 * TempK = temp in Kelvin
 * Tref = reference temperature (in K)
-* IS = input to SOC
-* ID = input to DOC pool
+* IS = input to SOC [set to 0 for incubation experiments]
+* ID = input to DOC pool [set to 0 for incubation experiments]
+* CO2 = CO2
+
+
+
+## Parameters
+
+* Ea = activation energy for decomposition reaction (real<lower=0>)
+* Ea_uptake = activation energy for DOC uptake (real<lower=0>)
+* Ea_K = Ea term for Km (see below) (real<lower=0>)
+* Ea_Kuptake = Ea term for Kup (see below) (real<lower=0>)
+* ECref = proportion of C assimilated into microbial biomass (vs. lost to respiration; i.e. CUE) (real<lower=0,upper=1>)
+* m = slope of CUE (acclimating with temperature) (real)
+* Vmax_ref = maximum reaction velocity for decomposition (real<lower=0>)
+* Vmax_uptake_ref = maximum reaction velocity for DOC uptake (real<lower=0>)
+* Km_ref = reference half-saturation parameter for decomposition reaction (real<lower=0>)
+* Km_uptake_ref = reference half-saturation constant for DOC uptake (real<lower=0>)
+* rL = rate of enzyme loss (real<lower=0>)
+* rE = rate of enzyme production (real<lower=0>)
+* rB = rate of microbial biomass death (real<lower=0>)
+* aBS = proportion of dead microbial biomass allocated to SOC pool (real<lower=0,upper=1>)
+
+## Derived Quantities
+
+Km = half saturation constant for decomposition of SOC pool (temperature dependent)
+Kup = half saturaation constant for uptake
 
 ## Fluxes
 
@@ -36,13 +51,16 @@ microbial physiology. <i>Nature Geoscience</i>. DOI: 10.1038/NGEO846.
 
 ## Pools
 
+These are specified as data for the first time step and estimated thereafter.
+
 * S = SOC
 * D = DOC
 * B = microbial biomass
 * E = enzyme pool
-* CO2 = CO2
 
-```r
+## Steve Allison's R code for simulation
+
+```
 rL <- 0.001
 IS <- 0.00015
 ID <- 0.00001
