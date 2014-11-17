@@ -1,6 +1,7 @@
 # Forward Kinetic Microbial Model
 
-Following Allison, Wallenstein, and Bradford 2013, Nature Geoscience; code from Steve Allison.
+Following Allison, Wallenstein, and Bradford (2010) Soil-carbon response to warming dependent on
+microbial physiology. <i>Nature Geoscience</i>. DOI: 10.1038/NGEO846.
 
 ## Parameters
 
