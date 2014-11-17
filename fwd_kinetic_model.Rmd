@@ -25,21 +25,23 @@ Following Allison, Wallenstein, and Bradford 2013, Nature Geoscience; code from 
 * IS = input to SOC
 * ID = input to DOC pool
 
-###Fluxes###
-#FA = uptake (flux from DOC pool to microbial biomass)
-#FB = biomass loss (death)
-#FE = enzyme production 
-#FL = enzyme loss 
-#FS = decomposition (flux from SOC pool to DOC pool)
+## Fluxes
 
-###Pools###
-#S = SOC
-#D = DOC
-#B = microbial biomass
-#E = enzyme pool
-#CO2 = CO2
+* FA = uptake (flux from DOC pool to microbial biomass)
+* FB = biomass loss (death)
+* FE = enzyme production 
+* FL = enzyme loss 
+* FS = decomposition (flux from SOC pool to DOC pool)
 
+## Pools
 
+* S = SOC
+* D = DOC
+* B = microbial biomass
+* E = enzyme pool
+* CO2 = CO2
+
+```r
 rL <- 0.001
 IS <- 0.00015
 ID <- 0.00001
@@ -61,7 +63,6 @@ Ea_K <- 30
 Ea_Kuptake <- 30
 R <- 0.008314
 
-```r
 EC <- (ECref+m*(Temp-20))
 V <- Vmax_ref*exp((-Ea/R)*(1/TempK-1/Tref))
 V_up <- Vmax_uptake_ref*exp((-Ea/R)*(1/TempK-1/Tref))
