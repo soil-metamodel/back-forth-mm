@@ -8,8 +8,8 @@
 |Km_ref | Half-saturation constant for SOC turnover at reference temperature | mg SOC mg soil-1 | 100-600  | German DP, Marcelo KRB, Stone MM, Allison SD. 2012. Global Change Biology.|
 |Ea_uptake | Activation energy for DOC uptake | kJ mol-1 | 20-60  | Allison et al. 2010|
 |Ea_Kuptake | Activation energy associated with Kuptake parameter | kJ mol-1 | On the order of 10^1 (result of model tuning) | Allison et al. 2010|
-|Vmax_uptake_ref | Maximum reaction velocity for DOC uptake at reference temperature | mg DOC| mg soil-1 h-1 | On the order of 10^8 (result of model tuning) | Allison et al. 2010|
-|Km_uptake_ref | Half-saturation constant for DOC uptake at reference temperature | mg DOC mg| soil-1 | On the order of 10^-1 (result of model tuning) | Allison et al. 2010|
+|Vmax_uptake_ref | Maximum reaction velocity for DOC uptake at reference temperature | mg DOC mg soil-1 h-1 | On the order of 10^8 (result of model tuning) | Allison et al. 2010|
+|Km_uptake_ref | Half-saturation constant for DOC uptake at reference temperature | mg DOC mg soil-1 | On the order of 10^-1 (result of model tuning) | Allison et al. 2010|
 |rL | Rate of enzyme loss | h-1 | On the order of 10^-3 | Allison SD. 2006. Biogeochemistry.|
 |rE | Rate of enzyme production | h-1 | On the order of 10^-6 | Allison et al. 2010|
 |rB | Rate of biomass turnover | h-1 | 0.0003 - 0.018 | Rousk J and Baath E. 2007. Soil Biology| and Biochemistry.|
