@@ -6,4 +6,4 @@
 | H2A        | System 'switches' from forward to reverse kinetics over time as substrate   is depleted in microcosms                       | Change-point model                                                                |
 | H2B        | Switch' to reverse kinetics happens faster under higher temperatures   (since substrate is depleted more quickly)           | Change-point model                                                                |
 | H3         | Kinetic parameters depend on initial substrate pool sizes (i.e. the site   form which the soil originated)                  | Hierarchical model                                                                |
-|            |                                                                                                                             |                                                                                   |
+|H4...            |                                                                                                                             |                                                                                   |
