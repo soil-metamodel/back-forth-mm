@@ -42,10 +42,16 @@ Kup = half saturaation constant for uptake
 ## Fluxes
 
 * FA = uptake (flux from DOC pool to microbial biomass)
-* FB = biomass loss (death)
-* FE = enzyme production 
-* FL = enzyme loss 
-* FS = decomposition (flux from SOC pool to DOC pool)
+* FB = biomass loss (death) = rB * B
+* FE = enzyme production = rE * B
+* FL = enzyme loss = rL * E
+* FS = decomposition (flux from SOC pool to DOC pool) = V[tr]*E*S/(K[tr]+S)
+
+where
+
+* Temp <- -5:35
+* tr <- which(Temp==20)  [so tr == 26;  what is this?]
+
 
 ## Pools
 
@@ -58,10 +64,10 @@ These are specified as data for the first time step and estimated thereafter.
 
 ## ODE
 
-d.S/d.t =
-d.D/d.t = 
-d.B/d.t = 
-d.E/d.t = 
+* d.S/d.t = IS + rB * B
+* d.D/d.t = ID + FB * (1 - aBS) + FS + FL - FA
+* d.B/d.t = FA * EC[tr] - FB - FE
+* d.E/d.t = FE - FL
 
 ## Steve Allison's R code for simulation
 
@@ -110,7 +116,7 @@ for (i in 1:time) {
   FS <- V[tr]*E*S/(K[tr]+S)
   S <- S + IS + FB*aBS - FS
   D <- D + ID + FB*(1-aBS) + FS + FL - FA
-  B <- B + FA*EC[tr] - FB -FE
+  B <- B + FA*EC[tr] - FB - FE
   E <- E + FE - FL
   CO2 <- FA*(1-EC[tr])
   out[i,] <- c(i,S,D,B,E,CO2)
