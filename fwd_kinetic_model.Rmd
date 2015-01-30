@@ -6,7 +6,7 @@ microbial physiology. <i>Nature Geoscience</i>. DOI: 10.1038/NGEO846.
 
 ## Constants
 
-* R = gas constant 
+* R = gas constant (0.008314)
 * Temp = conversion factor for temp in Kelvin
 
 ## Data
